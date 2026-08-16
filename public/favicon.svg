@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BO monogram">
-  <rect width="64" height="64" fill="#171713"/>
-  <path d="M14 13h17c9 0 14 4 14 11 0 4-2 7-6 9 5 2 8 5 8 10 0 8-6 12-16 12H14V13Zm10 8v9h7c3 0 5-2 5-5s-2-4-5-4h-7Zm0 17v9h8c4 0 6-2 6-5s-2-4-6-4h-8Z" fill="#f2eee4"/>
-  <rect x="49" y="13" width="3" height="42" fill="#d64b24"/>
+  <rect width="64" height="64" fill="#155eef"/>
+  <path d="M14 13h17c9 0 14 4 14 11 0 4-2 7-6 9 5 2 8 5 8 10 0 8-6 12-16 12H14V13Zm10 8v9h7c3 0 5-2 5-5s-2-4-5-4h-7Zm0 17v9h8c4 0 6-2 6-5s-2-4-6-4h-8Z" fill="#ffffff"/>
+  <rect x="49" y="13" width="5" height="42" fill="#ffd400"/>
 </svg>

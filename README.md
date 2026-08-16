@@ -1,46 +1,50 @@
-# Astro Starter Kit: Basics
+# Bryan Olandres portfolio
+
+A static Astro portfolio for Bryan Olandres, focused on technology leadership, fintech, payment systems, and engineering delivery.
+
+## Development
+
+Requires Node.js 22.12 or newer and Bun.
 
 ```sh
-bun create astro@latest -- --template basics
+bun install
+bun run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The repository guidance uses Astro's background server mode when the development server should stay running:
 
-## 🚀 Project Structure
+```sh
+bunx astro dev --background
+bunx astro dev status
+bunx astro dev logs
+bunx astro dev stop
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+## Quality checks
+
+```sh
+bun run check
+bun run build
+```
+
+The production build is written to `dist/`.
+
+## Resume download
+
+The recruiter-facing PDF is stored at:
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+public/Bryan-Olandres-Resume.pdf
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+Keep the filename stable when replacing the resume. The navigation, hero, and contact section all reference this path.
 
-## 🧞 Commands
+## Production URL
 
-All commands are run from the root of the project, from a terminal:
+Set `PUBLIC_SITE_URL` to the deployed origin during the production build. Astro uses it for canonical, Open Graph, and social-image URLs.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
+```sh
+PUBLIC_SITE_URL=https://example.com bun run build
+```
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Do not set a placeholder domain in production.

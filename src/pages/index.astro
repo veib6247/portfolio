@@ -1,11 +1,1150 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const title = 'Bryan Olandres | Interim Senior Technology Lead';
+const description =
+	'Bryan Olandres is an Interim Senior Technology Lead with 10+ years of experience across fintech platforms, payment gateways, full-stack engineering, and technical delivery.';
+
+const selectedWork = [
+	{
+		code: '01 / Product assessment',
+		title: 'AI voice and chatbot product',
+		description:
+			'Led feasibility assessment and high-level system design for an AI voice and chatbot product using open-source technologies. Evaluated architecture, integration patterns, operational requirements, delivery risks, and external vendors.',
+		scope: 'Feasibility · System design · Vendor evaluation',
+	},
+	{
+		code: '02 / Delivery oversight',
+		title: 'Corporate disbursement tool',
+		description:
+			'Oversaw delivery of an internal tool supporting high-volume corporate payouts and secure multi-ledger workflows. Provided technical governance and product alignment across the delivery effort.',
+		scope: 'Payments · Multi-ledger workflows · Governance',
+	},
+	{
+		code: '03 / Internal platform',
+		title: 'Payment-gateway testing tool',
+		description:
+			'Led the design and development of an internal testing tool that streamlined end-to-end payment-gateway integration cycles.',
+		scope: 'Integration testing · Payment gateways · Tooling',
+	},
+	{
+		code: '04 / Workflow design',
+		title: 'Centralized hiring tracker',
+		description:
+			'Architected and launched a centralized tracker that improved applicant workflow coordination between Human Resources and technical leads.',
+		scope: 'Internal product · Workflow coordination',
+	},
+];
+
+const payretoRoles = [
+	{
+		period: 'Jun 2026 to Present',
+		title: 'Interim Senior Technology Lead',
+		copy: 'Partners with the CEO on product discovery and technical direction. Leads delivery priorities, risk management, stakeholder alignment, system design, and vendor evaluation while serving as the primary Scrum Master across projects.',
+	},
+	{
+		period: 'Jan 2026 to May 2026',
+		title: 'Technology Lead',
+		copy: 'Provided technical governance, architecture strategy, and product alignment across enterprise payment configurations and internal platforms. Oversaw the corporate disbursement tool and drafted the company-wide AI governance policy.',
+	},
+	{
+		period: 'Jan 2025 to Dec 2025',
+		title: 'Technology Lead (Interim)',
+		copy: 'Guided payment-gateway architecture, sprint execution, and engineering delivery through a business leadership transition while maintaining deployment reliability and integration quality.',
+	},
+	{
+		period: 'Oct 2022 to Jan 2025',
+		title: 'Client Solutions Specialist',
+		copy: 'Led internal product work across payment-gateway testing, hiring operations, and high-availability microservices built with Python, TypeScript, and Vue.js.',
+	},
+	{
+		period: 'May 2019 to Oct 2022',
+		title: 'Payment Gateway Specialist',
+		copy: 'Administered international transaction gateways for multi-currency, cross-border accounts and secure vendor integrations. Diagnosed production infrastructure issues to maintain transaction-processing availability.',
+	},
+];
+
+const earlierRoles = [
+	{
+		period: '2016 to 2019',
+		company: 'TELUS International Philippines',
+		role: 'Network Support Analyst',
+		copy: 'Network diagnostics, incident triage, documentation, and technical support for field technicians handling telecommunications setups.',
+	},
+	{
+		period: '2011 to 2016',
+		company: 'Convergys',
+		role: 'Technical Support, Reporting & Data Management',
+		copy: 'End-user support, database diagnostics, transaction troubleshooting, data-integrity validation, and reporting audits.',
+	},
+	{
+		period: 'Summer 2011',
+		company: 'Department of Environment and Natural Resources',
+		role: 'Records Officer, On-the-Job Training',
+		copy: 'Organized land titles and official records for accurate filing and retrieval.',
+	},
+];
+
+const capabilityGroups = [
+	{
+		label: 'Leadership and delivery',
+		items: [
+			'Technology strategy',
+			'Technical roadmaps',
+			'Product discovery',
+			'Agile Scrum',
+			'Project management',
+			'Stakeholder management',
+			'Vendor evaluation',
+			'Developer mentorship',
+		],
+	},
+	{
+		label: 'Engineering',
+		items: [
+			'Python',
+			'FastAPI',
+			'Flask',
+			'Django',
+			'TypeScript',
+			'Hono',
+			'Drizzle ORM',
+			'Go',
+			'Vue.js',
+			'Nuxt.js',
+			'PostgreSQL',
+			'MySQL',
+		],
+	},
+	{
+		label: 'Payments and operations',
+		items: [
+			'Payment gateways',
+			'ACI Worldwide',
+			'PaymentPlug',
+			'CelerisPay',
+			'NORBr',
+			'SEON',
+			'Nethone',
+			'DigitalOcean',
+			'CI/CD',
+			'Test automation',
+		],
+	},
+	{
+		label: 'AI product work',
+		items: [
+			'Generative AI',
+			'Large language models',
+			'Conversational AI',
+			'Voice and chatbot architecture',
+			'Open-source AI evaluation',
+			'AI governance',
+		],
+	},
+];
+
+const certifications = [
+	['2025', 'Ultimate Agile Scrum Master Certification', 'Udemy'],
+	['2024', 'Python Django: The Practical Guide', 'Udemy'],
+	['2024', 'Become a Product Manager', 'Udemy'],
+	['2023', 'Figma UI/UX Design Essentials', 'Udemy'],
+	['2010', 'Computer Hardware Servicing NC II', 'TESDA'],
+];
+
+const downloadPath = '/Bryan-Olandres-Resume.pdf';
 ---
 
-<Layout>
-	<Welcome />
+<Layout {title} {description}>
+	<a class="skip-link" href="#main-content">Skip to main content</a>
+
+	<header class="site-header no-print">
+		<div class="shell header-inner">
+			<a class="brand" href="#top" aria-label="Bryan Olandres, back to top">
+				<span class="brand-mark" aria-hidden="true">BO</span>
+				<span class="brand-name">Bryan Olandres</span>
+			</a>
+			<nav aria-label="Primary navigation">
+				<a class="nav-link" href="#profile" data-nav="profile">Profile</a>
+				<a class="nav-link" href="#work" data-nav="work">Work</a>
+				<a class="nav-link" href="#experience" data-nav="experience">Experience</a>
+				<a class="nav-link" href="#range" data-nav="range">Range</a>
+				<a class="nav-link nav-download" href={downloadPath} download="Bryan-Olandres-Resume.pdf">
+					Resume
+					<svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1v9m0 0 4-4m-4 4L4 6M2 14h12" /></svg>
+				</a>
+			</nav>
+		</div>
+	</header>
+
+	<main id="main-content">
+		<section class="hero" id="top" aria-labelledby="hero-title">
+			<div class="shell hero-grid">
+				<div class="hero-copy" data-reveal>
+					<p class="eyebrow">Interim Senior Technology Lead · Pasig City, Philippines</p>
+					<h1 id="hero-title">Bryan<br /><em>Olandres</em></h1>
+					<p class="hero-statement">I turn product and operational needs into technical direction and accountable delivery.</p>
+					<p class="hero-summary">
+						I work across fintech platforms, payment systems, internal tools, and emerging AI products.
+						At Payreto, I partner with the CEO on product discovery and serve as the primary Scrum Master across delivery initiatives.
+					</p>
+					<div class="hero-actions no-print">
+						<a class="button primary" href="#work">
+							View selected work
+							<svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3 8h10m-4-4 4 4-4 4" /></svg>
+						</a>
+						<a class="button" href={downloadPath} download="Bryan-Olandres-Resume.pdf">
+							Download resume
+							<svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1v9m0 0 4-4m-4 4L4 6M2 14h12" /></svg>
+						</a>
+					</div>
+				</div>
+
+				<aside class="hero-rail" aria-label="Professional overview" data-reveal>
+					<div class="rail-status"><span></span> Available for a conversation</div>
+					<dl>
+						<div><dt>Experience</dt><dd>10+ years</dd></div>
+						<div><dt>Current company</dt><dd>Payreto Services Inc.</dd></div>
+						<div><dt>Primary domain</dt><dd>Fintech and payment systems</dd></div>
+						<div><dt>Operating range</dt><dd>Discovery, architecture, delivery</dd></div>
+						<div><dt>Email</dt><dd><a href="mailto:bryan.olandres.6247@gmail.com">bryan.olandres.6247@gmail.com</a></dd></div>
+						<div><dt>GitHub</dt><dd><a href="https://github.com/veib6247" rel="me">github.com/veib6247</a></dd></div>
+					</dl>
+				</aside>
+			</div>
+			<div class="route-line" aria-hidden="true"><span></span><i></i><span></span><i></i><span></span></div>
+		</section>
+
+		<section class="section leadership" id="profile" aria-labelledby="profile-title">
+			<div class="shell section-grid">
+				<div class="section-rail" data-reveal>
+					<p class="section-index">01 / Profile</p>
+					<p class="rail-note">Current scope</p>
+				</div>
+				<div class="section-body">
+					<div class="section-heading" data-reveal>
+						<h2 id="profile-title">From technical direction <em>to delivery</em></h2>
+						<p>My role connects business questions to system decisions and the work required to deliver them. I stay close to architecture and engineering, maintain ownership of priorities and risks, and keep stakeholders aligned.</p>
+					</div>
+					<div class="leadership-grid">
+						<article data-reveal><span>01</span><h3>Product discovery</h3><p>Partner with executive leadership to shape problem statements, assess opportunities, and translate findings into technical priorities.</p></article>
+						<article data-reveal><span>02</span><h3>Technical direction</h3><p>Guide architecture, integration choices, security practices, and delivery standards across payment and internal platforms.</p></article>
+						<article data-reveal><span>03</span><h3>Delivery leadership</h3><p>Lead sprint planning, prioritization, risk management, and stakeholder alignment as the primary Scrum Master across projects.</p></article>
+						<article data-reveal><span>04</span><h3>Team development</h3><p>Support cross-functional engineering teams through technical guidance, code review practices, and developer mentorship.</p></article>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section selected-work" id="work" aria-labelledby="work-title">
+			<div class="shell section-grid">
+				<div class="section-rail" data-reveal>
+					<p class="section-index">02 / Selected work</p>
+					<p class="rail-note">Non-confidential scope</p>
+				</div>
+				<div class="section-body">
+					<div class="section-heading compact" data-reveal>
+						<h2 id="work-title">Work that connects <em>systems and operations</em></h2>
+						<p>A selection of internal products and technical initiatives from my work at Payreto.</p>
+					</div>
+					<div class="work-list">
+						{selectedWork.map((item) => (
+							<article class="work-item" data-reveal>
+								<p class="meta">{item.code}</p>
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
+								<p class="work-scope">{item.scope}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section experience" id="experience" aria-labelledby="experience-title">
+			<div class="shell section-grid">
+				<div class="section-rail" data-reveal>
+					<p class="section-index">03 / Experience</p>
+					<p class="rail-note">2011 to present</p>
+				</div>
+				<div class="section-body">
+					<div class="section-heading" data-reveal>
+						<h2 id="experience-title">A career built <em>close to the work</em></h2>
+						<p>At Payreto, I advanced from payment operations and client solutions into technology leadership. Each role added broader responsibility for architecture, products, teams, and delivery.</p>
+					</div>
+
+					<div class="company-heading" data-reveal>
+						<div><p class="eyebrow">Payreto Services Inc.</p><h3>Five roles since 2019</h3></div>
+						<p>Makati, Philippines</p>
+					</div>
+					<ol class="timeline">
+						{payretoRoles.map((role) => (
+							<li data-reveal>
+								<time>{role.period}</time>
+								<div><h3>{role.title}</h3><p>{role.copy}</p></div>
+							</li>
+						))}
+					</ol>
+
+					<div class="earlier-heading" data-reveal><p class="eyebrow">Earlier experience</p><h3>Technical foundations</h3></div>
+					<div class="earlier-roles">
+						{earlierRoles.map((role) => (
+							<article data-reveal>
+								<time>{role.period}</time>
+								<h3>{role.role}</h3>
+								<p class="company">{role.company}</p>
+								<p>{role.copy}</p>
+							</article>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section capability" id="range" aria-labelledby="range-title">
+			<div class="shell section-grid">
+				<div class="section-rail" data-reveal>
+					<p class="section-index">04 / Technical range</p>
+					<p class="rail-note">Leadership backed by practice</p>
+				</div>
+				<div class="section-body">
+					<div class="section-heading compact" data-reveal>
+						<h2 id="range-title">Broad enough to lead. <em>Close enough to review.</em></h2>
+						<p>My technical background supports architecture decisions, delivery planning, code review, vendor discussions, and production operations.</p>
+					</div>
+					<div class="capability-list">
+						{capabilityGroups.map((group, index) => (
+							<div class="capability-row" data-reveal>
+								<p class="meta">0{index + 1}</p>
+								<h3>{group.label}</h3>
+								<ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section credentials" aria-labelledby="credentials-title">
+			<div class="shell section-grid">
+				<div class="section-rail" data-reveal>
+					<p class="section-index">05 / Education</p>
+					<p class="rail-note">Formal and continued learning</p>
+				</div>
+				<div class="section-body credentials-grid">
+					<div class="education-block" data-reveal>
+						<p class="eyebrow">Education</p>
+						<h2 id="credentials-title">Bachelor of Science<br /><em>in Computer Science</em></h2>
+						<p>Bohol Island State University · 2013</p>
+					</div>
+					<div class="certification-list" data-reveal>
+						<p class="eyebrow">Certifications</p>
+						<ul>
+							{certifications.map(([year, credential, provider]) => (
+								<li><time>{year}</time><span>{credential}</span><small>{provider}</small></li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="contact" id="contact" aria-labelledby="contact-title">
+			<div class="shell contact-grid">
+				<div data-reveal>
+					<p class="section-index">06 / Contact</p>
+					<h2 id="contact-title">Let's discuss<br /><em>the work.</em></h2>
+				</div>
+				<div class="contact-copy" data-reveal>
+					<p>I'm open to conversations about technology leadership, fintech platforms, payment systems, and product delivery. For role or project discussions, contact me directly by email.</p>
+					<div class="contact-actions no-print">
+						<a class="button primary" href="mailto:bryan.olandres.6247@gmail.com">Email Bryan <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3 8h10m-4-4 4 4-4 4" /></svg></a>
+						<a class="button" href={downloadPath} download="Bryan-Olandres-Resume.pdf">Download resume <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1v9m0 0 4-4m-4 4L4 6M2 14h12" /></svg></a>
+					</div>
+					<address>
+						<a href="mailto:bryan.olandres.6247@gmail.com">bryan.olandres.6247@gmail.com</a>
+						<a href="https://github.com/veib6247" rel="me">github.com/veib6247</a>
+						<span>Pasig City, Philippines</span>
+					</address>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="shell footer-inner">
+			<p>Bryan Olandres · Interim Senior Technology Lead</p>
+			<a class="no-print" href="#top">Back to top ↑</a>
+		</div>
+	</footer>
+
+	<script>
+		const revealItems = document.querySelectorAll<HTMLElement>('[data-reveal]');
+		if ('IntersectionObserver' in window) {
+			document.documentElement.classList.add('has-reveal');
+			const revealObserver = new IntersectionObserver(
+				(entries, observer) => {
+					for (const entry of entries) {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('is-visible');
+							observer.unobserve(entry.target);
+						}
+					}
+				},
+				{ rootMargin: '0px 0px -8% 0px', threshold: 0.08 },
+			);
+			revealItems.forEach((item) => revealObserver.observe(item));
+		}
+
+		const sections = document.querySelectorAll<HTMLElement>('section[id]');
+		const navLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav]');
+		if ('IntersectionObserver' in window && navLinks.length) {
+			const sectionObserver = new IntersectionObserver(
+				(entries) => {
+					const visible = entries
+						.filter((entry) => entry.isIntersecting)
+						.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+					if (!visible) return;
+					navLinks.forEach((link) => {
+						const active = link.dataset.nav === visible.target.id;
+						link.classList.toggle('is-active', active);
+						if (active) link.setAttribute('aria-current', 'location');
+						else link.removeAttribute('aria-current');
+					});
+				},
+				{ rootMargin: '-30% 0px -60% 0px', threshold: [0, 0.1, 0.25] },
+			);
+			sections.forEach((section) => sectionObserver.observe(section));
+		}
+	</script>
 </Layout>
+
+<style>
+	.site-header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		border-bottom: 1px solid color-mix(in srgb, var(--line), transparent 20%);
+		background: color-mix(in srgb, var(--paper), transparent 7%);
+		backdrop-filter: blur(14px);
+	}
+
+	.header-inner {
+		display: flex;
+		min-height: 72px;
+		align-items: stretch;
+		justify-content: space-between;
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		font-size: 0.86rem;
+		font-weight: 750;
+		text-decoration: none;
+	}
+
+	.brand-mark {
+		display: grid;
+		width: 34px;
+		height: 34px;
+		place-items: center;
+		background: var(--ink);
+		color: var(--paper);
+		font-family: var(--mono);
+		font-size: 0.7rem;
+		letter-spacing: 0.06em;
+	}
+
+	nav {
+		display: flex;
+		align-items: stretch;
+	}
+
+	.nav-link {
+		display: flex;
+		min-width: 88px;
+		align-items: center;
+		justify-content: center;
+		border-left: 1px solid var(--line);
+		text-decoration: none;
+		transition: background 160ms ease, color 160ms ease;
+	}
+
+	.nav-link:hover,
+	.nav-link.is-active {
+		background: var(--ink);
+		color: var(--paper);
+	}
+
+	.nav-download {
+		gap: 8px;
+		padding-inline: 18px;
+		background: var(--signal);
+		color: var(--white);
+	}
+
+	.nav-download svg,
+	.hero-actions svg,
+	.contact-actions svg {
+		width: 16px;
+		fill: none;
+		stroke: currentColor;
+		stroke-linecap: square;
+		stroke-width: 1.6;
+	}
+
+	.hero {
+		position: relative;
+		padding: clamp(72px, 10vw, 150px) 0 0;
+		overflow: hidden;
+	}
+
+	.hero::before {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: min(34vw, 460px);
+		height: 100%;
+		border-left: 1px solid var(--line);
+		background: linear-gradient(145deg, rgba(214, 75, 36, 0.12), transparent 58%);
+		content: '';
+		pointer-events: none;
+	}
+
+	.hero-grid {
+		position: relative;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr);
+		gap: clamp(54px, 8vw, 118px);
+	}
+
+	.hero-copy {
+		padding-bottom: clamp(76px, 9vw, 136px);
+	}
+
+	.hero h1 {
+		max-width: 860px;
+		margin: 24px 0 28px;
+		font-family: var(--display);
+		font-size: clamp(5rem, 10.5vw, 9.5rem);
+		font-weight: 520;
+		letter-spacing: -0.07em;
+		line-height: 0.72;
+	}
+
+	.hero h1 em,
+	.section-heading em,
+	.education-block em,
+	.contact em {
+		color: var(--signal);
+		font-weight: 430;
+	}
+
+	.hero-statement {
+		max-width: 800px;
+		margin-bottom: 24px;
+		font-family: var(--display);
+		font-size: clamp(1.7rem, 3.2vw, 3rem);
+		font-weight: 470;
+		letter-spacing: -0.025em;
+		line-height: 1.08;
+	}
+
+	.hero-summary {
+		max-width: 720px;
+		margin-bottom: 36px;
+		color: var(--muted);
+		font-size: clamp(1rem, 1.3vw, 1.15rem);
+		line-height: 1.7;
+	}
+
+	.hero-actions,
+	.contact-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+
+	.hero-rail {
+		position: relative;
+		align-self: end;
+		padding: 30px 0 34px 30px;
+		border-left: 1px solid var(--ink);
+	}
+
+	.rail-status {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 30px;
+		font-family: var(--mono);
+		font-size: 0.69rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.rail-status span {
+		width: 8px;
+		height: 8px;
+		background: var(--signal);
+		box-shadow: 0 0 0 4px rgba(214, 75, 36, 0.15);
+	}
+
+	.hero-rail dl,
+	.hero-rail dd {
+		margin: 0;
+	}
+
+	.hero-rail dl > div {
+		padding: 14px 0;
+		border-top: 1px solid var(--line);
+	}
+
+	.hero-rail dt {
+		margin-bottom: 4px;
+		color: var(--muted);
+		font-family: var(--mono);
+		font-size: 0.64rem;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.hero-rail dd {
+		font-size: 0.91rem;
+		font-weight: 650;
+		line-height: 1.35;
+		overflow-wrap: anywhere;
+	}
+
+	.route-line {
+		display: grid;
+		width: 100%;
+		height: 34px;
+		grid-template-columns: auto 1fr auto 1fr auto;
+		align-items: center;
+		background: var(--ink);
+	}
+
+	.route-line span {
+		width: 9px;
+		height: 9px;
+		margin-inline: 14px;
+		border: 2px solid var(--paper);
+	}
+
+	.route-line span:nth-of-type(2) {
+		border-color: var(--signal);
+		background: var(--signal);
+	}
+
+	.route-line i {
+		height: 1px;
+		background: repeating-linear-gradient(90deg, #8c877d 0 6px, transparent 6px 11px);
+	}
+
+	.section {
+		padding: clamp(90px, 11vw, 160px) 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.section-grid {
+		display: grid;
+		grid-template-columns: 180px minmax(0, 1fr);
+		gap: clamp(38px, 6vw, 88px);
+	}
+
+	.section-rail {
+		position: relative;
+		padding-right: 28px;
+		border-right: 1px solid var(--line);
+	}
+
+	.rail-note {
+		position: sticky;
+		top: 105px;
+		margin-top: 28px;
+		color: var(--muted);
+		font-size: 0.78rem;
+		line-height: 1.45;
+	}
+
+	.section-heading {
+		display: grid;
+		grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+		gap: 48px;
+		align-items: end;
+		margin-bottom: 72px;
+	}
+
+	.section-heading.compact {
+		margin-bottom: 54px;
+	}
+
+	.section-heading h2,
+	.education-block h2,
+	.contact h2 {
+		margin: 0;
+		font-family: var(--display);
+		font-size: clamp(3rem, 5.4vw, 5.3rem);
+		font-weight: 480;
+		letter-spacing: -0.045em;
+		line-height: 0.96;
+	}
+
+	.section-heading p {
+		margin: 0;
+		color: var(--muted);
+		font-size: 1rem;
+		line-height: 1.75;
+	}
+
+	.leadership-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		border-top: 1px solid var(--ink);
+		border-left: 1px solid var(--line);
+	}
+
+	.leadership-grid article {
+		min-height: 240px;
+		padding: 28px;
+		border-right: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
+	}
+
+	.leadership-grid article > span {
+		color: var(--signal-dark);
+		font-family: var(--mono);
+		font-size: 0.7rem;
+	}
+
+	.leadership-grid h3,
+	.work-item h3,
+	.company-heading h3,
+	.timeline h3,
+	.earlier-heading h3,
+	.earlier-roles h3,
+	.capability-row h3 {
+		font-family: var(--display);
+		font-weight: 560;
+		letter-spacing: -0.018em;
+	}
+
+	.leadership-grid h3 {
+		margin: 42px 0 14px;
+		font-size: 1.65rem;
+	}
+
+	.leadership-grid p,
+	.work-item > p:not(.meta, .work-scope),
+	.timeline p,
+	.earlier-roles > article > p:last-child {
+		margin-bottom: 0;
+		color: var(--muted);
+		line-height: 1.7;
+	}
+
+	.selected-work {
+		background: var(--ink);
+		color: var(--paper);
+	}
+
+	.selected-work .section-rail {
+		border-color: #3d3b35;
+	}
+
+	.selected-work .section-index,
+	.selected-work .meta {
+		color: #ff8b68;
+	}
+
+	.selected-work .rail-note,
+	.selected-work .section-heading p,
+	.selected-work .work-item > p:not(.meta, .work-scope) {
+		color: #bdb8ad;
+	}
+
+	.selected-work .section-heading em {
+		color: #ff8b68;
+	}
+
+	.work-list {
+		border-top: 1px solid #68645b;
+	}
+
+	.work-item {
+		display: grid;
+		grid-template-columns: 160px minmax(210px, 0.65fr) minmax(300px, 1fr);
+		gap: 28px;
+		padding: 36px 0;
+		border-bottom: 1px solid #45423b;
+	}
+
+	.work-item h3 {
+		margin: 0;
+		font-size: clamp(1.55rem, 2.4vw, 2.25rem);
+		line-height: 1.05;
+	}
+
+	.work-scope {
+		grid-column: 2 / -1;
+		margin: 2px 0 0;
+		color: #88847a;
+		font-family: var(--mono);
+		font-size: 0.67rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+
+	.company-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		padding: 28px 0;
+		border-top: 2px solid var(--ink);
+		border-bottom: 1px solid var(--line);
+	}
+
+	.company-heading h3,
+	.earlier-heading h3 {
+		margin: 3px 0 0;
+		font-size: 2rem;
+	}
+
+	.company-heading > p {
+		margin: 0;
+		color: var(--muted);
+		font-size: 0.86rem;
+	}
+
+	.timeline {
+		margin: 0 0 90px;
+		padding: 0;
+		list-style: none;
+	}
+
+	.timeline li {
+		position: relative;
+		display: grid;
+		grid-template-columns: 190px 1fr;
+		gap: 40px;
+		padding: 36px 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.timeline li::before {
+		position: absolute;
+		top: 42px;
+		left: 0;
+		width: 7px;
+		height: 7px;
+		transform: translateX(-17px);
+		background: var(--signal);
+		content: '';
+	}
+
+	.timeline time,
+	.earlier-roles time,
+	.certification-list time {
+		font-family: var(--mono);
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+
+	.timeline h3 {
+		margin: -5px 0 9px;
+		font-size: 1.6rem;
+	}
+
+	.earlier-heading {
+		margin-bottom: 28px;
+	}
+
+	.earlier-roles {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		border-top: 1px solid var(--ink);
+		border-left: 1px solid var(--line);
+	}
+
+	.earlier-roles article {
+		padding: 26px;
+		border-right: 1px solid var(--line);
+		border-bottom: 1px solid var(--line);
+	}
+
+	.earlier-roles h3 {
+		margin: 34px 0 6px;
+		font-size: 1.35rem;
+		line-height: 1.15;
+	}
+
+	.earlier-roles .company {
+		min-height: 46px;
+		margin-bottom: 18px;
+		font-size: 0.8rem;
+		font-weight: 700;
+		line-height: 1.4;
+	}
+
+	.capability-list {
+		border-top: 2px solid var(--ink);
+	}
+
+	.capability-row {
+		display: grid;
+		grid-template-columns: 56px 230px 1fr;
+		gap: 24px;
+		padding: 30px 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.capability-row h3 {
+		margin: -4px 0 0;
+		font-size: 1.35rem;
+		line-height: 1.15;
+	}
+
+	.capability-row ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0;
+		margin: 0;
+		padding: 0;
+		color: var(--muted);
+		list-style: none;
+	}
+
+	.capability-row li:not(:last-child)::after {
+		margin: 0 9px;
+		color: var(--signal);
+		content: '/';
+	}
+
+	.credentials {
+		background: var(--paper-deep);
+	}
+
+	.credentials-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(340px, 1.1fr);
+		gap: 72px;
+	}
+
+	.education-block h2 {
+		margin: 26px 0 24px;
+		font-size: clamp(2.7rem, 4.2vw, 4.6rem);
+	}
+
+	.education-block > p:last-child {
+		font-weight: 650;
+	}
+
+	.certification-list ul {
+		margin: 25px 0 0;
+		padding: 0;
+		border-top: 1px solid var(--ink);
+		list-style: none;
+	}
+
+	.certification-list li {
+		display: grid;
+		grid-template-columns: 56px 1fr auto;
+		gap: 18px;
+		align-items: baseline;
+		padding: 16px 0;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.certification-list span {
+		font-weight: 650;
+	}
+
+	.certification-list small {
+		color: var(--muted);
+		font-family: var(--mono);
+	}
+
+	.contact {
+		padding: clamp(90px, 12vw, 170px) 0;
+		background: var(--signal);
+		color: var(--white);
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+		gap: 80px;
+		align-items: end;
+	}
+
+	.contact em {
+		color: var(--ink);
+	}
+
+	.contact .section-index {
+		color: var(--white);
+	}
+
+	.contact h2 {
+		margin-top: 24px;
+		font-size: clamp(4.3rem, 8vw, 8rem);
+		line-height: 0.75;
+	}
+
+	.contact-copy > p {
+		max-width: 600px;
+		margin-bottom: 32px;
+		font-size: 1.15rem;
+		line-height: 1.65;
+	}
+
+	.contact .button.primary {
+		border-color: var(--ink);
+		background: var(--ink);
+	}
+
+	.contact .button {
+		border-color: var(--white);
+		color: var(--white);
+	}
+
+	.contact .button:hover {
+		background: var(--white);
+		color: var(--signal-dark);
+	}
+
+	.contact address {
+		display: grid;
+		gap: 7px;
+		margin-top: 36px;
+		font-style: normal;
+	}
+
+	.contact address a,
+	.contact address span {
+		overflow-wrap: anywhere;
+	}
+
+	footer {
+		padding: 24px 0;
+		background: var(--ink);
+		color: var(--paper);
+	}
+
+	.footer-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 24px;
+	}
+
+	.footer-inner p,
+	.footer-inner a {
+		margin: 0;
+		font-family: var(--mono);
+		font-size: 0.68rem;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+	}
+
+	.has-reveal [data-reveal] {
+		opacity: 0;
+		transform: translateY(18px);
+		transition: opacity 520ms ease, transform 520ms ease;
+	}
+
+	.has-reveal [data-reveal].is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	@media (max-width: 1020px) {
+		.brand-name { display: none; }
+		.nav-link { min-width: 76px; }
+		.hero-grid { grid-template-columns: minmax(0, 1fr) 280px; gap: 40px; }
+		.section-grid { grid-template-columns: 130px minmax(0, 1fr); gap: 40px; }
+		.section-heading { grid-template-columns: 1fr; gap: 24px; }
+		.work-item { grid-template-columns: 120px minmax(210px, 0.65fr) 1fr; }
+		.earlier-roles { grid-template-columns: 1fr; }
+		.earlier-roles .company { min-height: auto; }
+		.contact-grid { grid-template-columns: 1fr; gap: 48px; }
+		.contact h2 { line-height: 0.82; }
+	}
+
+	@media (max-width: 760px) {
+		.header-inner { min-height: 64px; }
+		.brand { padding-right: 10px; }
+		.brand-mark { width: 32px; height: 32px; }
+		nav { max-width: calc(100vw - 64px); overflow-x: auto; }
+		.nav-link { min-width: auto; padding: 0 13px; font-size: 0.63rem; }
+		.nav-link[data-nav='profile'], .nav-link[data-nav='range'] { display: none; }
+		.nav-download { padding-inline: 14px; }
+		.hero { padding-top: 64px; }
+		.hero::before { display: none; }
+		.hero-grid { grid-template-columns: 1fr; gap: 0; }
+		.hero-copy { padding-bottom: 54px; }
+		.hero h1 { margin: 20px 0 28px; font-size: clamp(4.5rem, 23vw, 7rem); line-height: 0.75; }
+		.hero-statement { font-size: clamp(1.9rem, 8vw, 2.6rem); }
+		.hero-summary { line-height: 1.62; }
+		.hero-actions { display: grid; grid-template-columns: 1fr; }
+		.hero-rail { padding: 30px 0 30px 20px; }
+		.section { padding: 88px 0; }
+		.section-grid { grid-template-columns: 1fr; gap: 36px; }
+		.section-rail { padding: 0 0 16px; border-right: 0; border-bottom: 1px solid var(--line); }
+		.rail-note { position: static; margin: 8px 0 0; }
+		.section-heading, .section-heading.compact { margin-bottom: 46px; }
+		.section-heading h2, .education-block h2 { font-size: clamp(3rem, 14vw, 4.5rem); }
+		.leadership-grid { grid-template-columns: 1fr; }
+		.leadership-grid article { min-height: 0; }
+		.work-item { grid-template-columns: 1fr; gap: 15px; }
+		.work-item h3 { font-size: 2rem; }
+		.work-scope { grid-column: auto; margin-top: 8px; }
+		.company-heading { display: block; }
+		.company-heading > p { margin-top: 8px; }
+		.timeline li { grid-template-columns: 1fr; gap: 18px; padding-left: 16px; }
+		.timeline li::before { left: 17px; transform: translateX(-17px); }
+		.earlier-roles { grid-template-columns: 1fr; }
+		.capability-row { grid-template-columns: 40px 1fr; }
+		.capability-row ul { grid-column: 2; margin-top: 6px; }
+		.credentials-grid { grid-template-columns: 1fr; gap: 54px; }
+		.certification-list li { grid-template-columns: 48px 1fr; }
+		.certification-list small { grid-column: 2; }
+		.contact { padding: 90px 0; }
+		.contact h2 { font-size: clamp(4.5rem, 21vw, 7rem); }
+		.contact-copy > p { font-size: 1rem; }
+		.contact-actions { display: grid; }
+		.footer-inner { align-items: start; flex-direction: column; }
+	}
+
+	@media (max-width: 390px) {
+		.nav-link[data-nav='experience'] { display: none; }
+		.nav-link { padding-inline: 11px; }
+		.hero h1 { font-size: 4.25rem; }
+		.section-heading h2, .education-block h2 { font-size: 2.85rem; }
+		.contact h2 { font-size: 4.2rem; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.has-reveal [data-reveal] { opacity: 1; transform: none; }
+	}
+
+	@media print {
+		.hero, .section, .contact { padding: 28px 0; background: #fff; color: #000; }
+		.hero::before, .route-line { display: none; }
+		.hero-grid, .section-grid, .section-heading, .contact-grid, .credentials-grid { display: block; }
+		.hero h1, .section-heading h2, .education-block h2, .contact h2 { margin-bottom: 12px; color: #000; font-size: 28pt; line-height: 1; }
+		.hero h1 em, .section-heading em, .education-block em, .contact em { color: #000; }
+		.hero-copy { padding: 0; }
+		.hero-rail { margin-top: 20px; padding: 0; border: 0; }
+		.section-rail { margin-bottom: 14px; padding: 0; border: 0; }
+		.rail-note { position: static; }
+		.work-item, .timeline li, .capability-row { break-inside: avoid; }
+		.has-reveal [data-reveal] { opacity: 1; transform: none; }
+	}
+</style>

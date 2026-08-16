@@ -1,17 +1,23 @@
-@import '@fontsource-variable/newsreader/wght-italic.css';
-
 :root {
-	--paper: #f2eee4;
-	--paper-deep: #e7e0d2;
-	--ink: #171713;
-	--muted: #615e56;
-	--line: #c8c0b1;
-	--signal: #c8421d;
-	--signal-dark: #9f2f12;
-	--white: #fffdf7;
-	--display: 'Newsreader Variable', Georgia, serif;
+	--canvas: #f4f7f8;
+	--surface: #ffffff;
+	--ink: #101820;
+	--muted: #52616b;
+	--line: #d7e0e5;
+	--line-strong: #7a8b95;
+	--deep: #0d2538;
+	--cobalt: #155eef;
+	--cobalt-strong: #0b3b9e;
+	--safety: #ffd400;
+	--on-dark: #f4f7f8;
+	--paper: var(--canvas);
+	--paper-deep: #e8eef1;
+	--signal: var(--cobalt);
+	--signal-dark: var(--cobalt-strong);
+	--white: #ffffff;
+	--display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
 	--body: 'Archivo Variable', 'Helvetica Neue', sans-serif;
-	--mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+	--mono: 'Archivo Variable', 'Helvetica Neue', sans-serif;
 	--content: min(1180px, calc(100vw - 48px));
 }
 
@@ -28,10 +34,7 @@ html {
 body {
 	margin: 0;
 	min-width: 320px;
-	background:
-		linear-gradient(90deg, rgba(23, 23, 19, 0.035) 1px, transparent 1px) 0 0 / 48px 48px,
-		linear-gradient(rgba(23, 23, 19, 0.025) 1px, transparent 1px) 0 0 / 48px 48px,
-		var(--paper);
+	background: var(--canvas);
 	color: var(--ink);
 	font-family: var(--body);
 	font-size: 16px;
@@ -127,14 +130,14 @@ p {
 	justify-content: center;
 	gap: 10px;
 	padding: 12px 16px;
-	border: 1px solid var(--ink);
+	border: 2px solid var(--ink);
 	background: transparent;
 	color: var(--ink);
 	text-decoration: none;
 	transition:
-		background-color 160ms ease,
-		color 160ms ease,
-		transform 160ms ease;
+		background-color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+		color 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+		transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .button:hover {
@@ -168,12 +171,7 @@ p {
 		scroll-padding-top: 78px;
 	}
 
-	body {
-		background:
-			linear-gradient(90deg, rgba(23, 23, 19, 0.028) 1px, transparent 1px) 0 0 / 32px 32px,
-			linear-gradient(rgba(23, 23, 19, 0.02) 1px, transparent 1px) 0 0 / 32px 32px,
-			var(--paper);
-	}
+	body { background: var(--canvas); }
 
 	.button {
 		min-height: 48px;

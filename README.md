@@ -39,12 +39,8 @@ public/Bryan-Olandres-Resume.pdf
 
 Keep the filename stable when replacing the resume. The navigation, hero, and contact section all reference this path.
 
-## Production URL
+## Deployment
 
-Set `PUBLIC_SITE_URL` to the deployed origin during the production build. Astro uses it for canonical, Open Graph, and social-image URLs.
+Vercel deploys the production site at `https://www.bryisdoinghisbest.com` and uses the `staging` branch for preview deployments.
 
-```sh
-PUBLIC_SITE_URL=https://example.com bun run build
-```
-
-Do not set a placeholder domain in production.
+The production origin is configured through Astro's `site` setting so canonical and Open Graph URLs remain stable on Vercel previews. `PUBLIC_SITE_URL` can override that origin for an intentional alternate deployment.

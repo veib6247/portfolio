@@ -1,5 +1,7 @@
 ---
-import '@fontsource-variable/newsreader';
+import '@fontsource/barlow-condensed/600.css';
+import '@fontsource/barlow-condensed/700.css';
+import '@fontsource/barlow-condensed/800.css';
 import '@fontsource-variable/archivo';
 import '../styles/global.css';
 
@@ -9,7 +11,7 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const configuredSite = import.meta.env.PUBLIC_SITE_URL;
+const configuredSite = import.meta.env.PUBLIC_SITE_URL ?? Astro.site?.toString();
 const canonicalUrl = configuredSite
 	? new URL(Astro.url.pathname, configuredSite).toString()
 	: undefined;
@@ -38,7 +40,7 @@ const personJsonLd = {
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#f2eee4" />
+		<meta name="theme-color" content="#f4f7f8" />
 		<meta name="color-scheme" content="light" />
 		<meta name="description" content={description} />
 		<meta name="author" content="Bryan Olandres" />

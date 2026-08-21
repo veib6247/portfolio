@@ -14,6 +14,11 @@ import {
 const title = PROFILE_PAGE_TITLE;
 const description = publicProfile.description;
 const downloadPath = RESUME_PATH;
+const profileLocation = `${publicProfile.location.city}, ${publicProfile.location.country}`;
+const employerLocation = `${publicProfile.currentEmployer.city}, ${publicProfile.currentEmployer.country}`;
+const githubUrl = new URL(publicProfile.github);
+const githubLabel = `${githubUrl.hostname}${githubUrl.pathname.replace(/\/$/, '')}`;
+const initials = `${publicProfile.givenName[0]}${publicProfile.familyName[0]}`;
 ---
 
 <Layout {title} {description}>
@@ -21,9 +26,9 @@ const downloadPath = RESUME_PATH;
 
 	<header class="site-header no-print">
 		<div class="shell header-inner">
-			<a class="brand" href="#top" aria-label="Bryan Olandres, back to top">
-				<span class="brand-mark" aria-hidden="true">BO</span>
-				<span class="brand-name">Bryan Olandres</span>
+			<a class="brand" href="#top" aria-label={`${publicProfile.name}, back to top`}>
+				<span class="brand-mark" aria-hidden="true">{initials}</span>
+				<span class="brand-name">{publicProfile.name}</span>
 			</a>
 			<nav aria-label="Primary navigation">
 				<a class="nav-link" href="#profile" data-nav="profile">Profile</a>
@@ -42,8 +47,8 @@ const downloadPath = RESUME_PATH;
 		<section class="hero" id="top" aria-labelledby="hero-title">
 			<div class="shell hero-grid">
 				<div class="hero-copy" data-reveal>
-					<p class="eyebrow">{publicProfile.jobTitle} · Pasig City, Philippines</p>
-					<h1 id="hero-title">Bryan<br /><em>Olandres</em></h1>
+					<p class="eyebrow">{publicProfile.jobTitle} · {profileLocation}</p>
+					<h1 id="hero-title">{publicProfile.givenName}<br /><em>{publicProfile.familyName}</em></h1>
 					<p class="hero-statement">I translate product and operational needs into technical direction and lead delivery.</p>
 					<p class="hero-summary">
 						I work across fintech platforms, payment systems, internal tools, and artificial intelligence (AI) products.
@@ -64,18 +69,18 @@ const downloadPath = RESUME_PATH;
 				<aside class="hero-rail" aria-label="Professional overview" data-reveal>
 					<div class="rail-status"><span></span> {publicProfile.jobTitle}</div>
 					<dl>
-						<div><dt>Experience</dt><dd>10+ years</dd></div>
-						<div><dt>Current company</dt><dd>Payreto Services Inc.</dd></div>
+						<div><dt>Experience</dt><dd>{publicProfile.experience}</dd></div>
+						<div><dt>Current company</dt><dd>{publicProfile.currentEmployer.name}</dd></div>
 						<div><dt>Primary domain</dt><dd>Fintech and payment systems</dd></div>
 						<div><dt>Operating range</dt><dd>Discovery, architecture, delivery</dd></div>
-						<div><dt>Email</dt><dd><a href="mailto:bryan.olandres.6247@gmail.com">bryan.olandres.6247@gmail.com</a></dd></div>
-						<div><dt>GitHub</dt><dd><a href="https://github.com/veib6247" rel="me">github.com/veib6247</a></dd></div>
+						<div><dt>Email</dt><dd><a href={`mailto:${publicProfile.email}`}>{publicProfile.email}</a></dd></div>
+						<div><dt>GitHub</dt><dd><a href={publicProfile.github} rel="me">{githubLabel}</a></dd></div>
 					</dl>
 				</aside>
 			</div>
 			<div class="accountability-strip">
 				<div class="shell">
-					<span><strong>10+ years</strong> across technical operations and delivery</span>
+					<span><strong>{publicProfile.experience}</strong> across technical operations and delivery</span>
 					<span><strong>Fintech</strong> and payment systems</span>
 					<span><strong>Operating range:</strong> discovery, architecture, and delivery</span>
 				</div>
@@ -91,7 +96,7 @@ const downloadPath = RESUME_PATH;
 				<div class="section-body">
 					<div class="section-heading" data-reveal>
 						<h2 id="profile-title">From technical direction <em>to delivery</em></h2>
-						<p>I am a {publicProfile.jobTitle} based in Pasig City, Philippines. I translate business questions into system decisions and lead delivery across fintech platforms, payment systems, internal tools, and AI products.</p>
+						<p>I am a {publicProfile.jobTitle} based in {profileLocation}. I translate business questions into system decisions and lead delivery across fintech platforms, payment systems, internal tools, and AI products.</p>
 					</div>
 					<div class="leadership-grid">
 						<article data-reveal><span>01</span><h3>Product discovery</h3><p>I partner with executive leadership to shape problem statements, assess opportunities, and translate findings into technical priorities.</p></article>
@@ -141,8 +146,8 @@ const downloadPath = RESUME_PATH;
 					</div>
 
 					<div class="company-heading" data-reveal>
-						<div><p class="eyebrow">Payreto Services Inc.</p><h3>Four roles since 2019</h3></div>
-						<p>Makati, Philippines</p>
+						<div><p class="eyebrow">{publicProfile.currentEmployer.name}</p><h3>{payretoRoles.length} roles since 2019</h3></div>
+						<p>{employerLocation}</p>
 					</div>
 					<ol class="timeline">
 						{payretoRoles.map((role) => (
@@ -202,7 +207,7 @@ const downloadPath = RESUME_PATH;
 					<div class="education-block" data-reveal>
 						<p class="eyebrow">Education</p>
 						<h2 id="credentials-title">Bachelor of Science<br /><em>in Computer Science</em></h2>
-						<p>Bohol Island State University · 2013</p>
+						<p>{publicProfile.education.institution} · {publicProfile.education.year}</p>
 					</div>
 					<div class="certification-list" data-reveal>
 						<p class="eyebrow">Certifications</p>
@@ -225,13 +230,13 @@ const downloadPath = RESUME_PATH;
 				<div class="contact-copy" data-reveal>
 					<p>Email me to discuss technology leadership, fintech platforms, payment systems, product delivery, or other complex technical projects.</p>
 					<div class="contact-actions no-print">
-						<a class="button primary" href="mailto:bryan.olandres.6247@gmail.com">Email Bryan <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3 8h10m-4-4 4 4-4 4" /></svg></a>
+						<a class="button primary" href={`mailto:${publicProfile.email}`}>Email {publicProfile.givenName} <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3 8h10m-4-4 4 4-4 4" /></svg></a>
 						<a class="button" href={downloadPath} download="Bryan-Olandres-Resume.pdf">Download resume <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1v9m0 0 4-4m-4 4L4 6M2 14h12" /></svg></a>
 					</div>
 					<address>
-						<a href="mailto:bryan.olandres.6247@gmail.com">bryan.olandres.6247@gmail.com</a>
-						<a href="https://github.com/veib6247" rel="me">github.com/veib6247</a>
-						<span>Pasig City, Philippines</span>
+						<a href={`mailto:${publicProfile.email}`}>{publicProfile.email}</a>
+						<a href={publicProfile.github} rel="me">{githubLabel}</a>
+						<span>{profileLocation}</span>
 					</address>
 				</div>
 			</div>
@@ -240,7 +245,7 @@ const downloadPath = RESUME_PATH;
 
 	<footer>
 		<div class="shell footer-inner">
-			<p>Bryan Olandres · {publicProfile.jobTitle}</p>
+			<p>{publicProfile.name} · {publicProfile.jobTitle}</p>
 			<a class="no-print" href="#top">Back to top ↑</a>
 		</div>
 	</footer>

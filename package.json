@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "check": "astro check",
-    "verify:search": "bun run build && node scripts/validate-search.mjs",
+    "verify:search": "bun run verify:search:production && bun run verify:search:preview && bun run build",
+    "verify:search:production": "bun run build && node scripts/validate-search.mjs",
+    "verify:search:preview": "VERCEL_ENV=preview bun run build && VERCEL_ENV=preview node scripts/validate-search.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -1,11 +1,28 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { readFile } from 'node:fs/promises';
 
 const productionOrigin = 'https://www.bryisdoinghisbest.com';
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
+const readBinary = (path) => readFile(new URL(`../${path}`, import.meta.url));
+const sha256 = (content) => createHash('sha256').update(content).digest('hex');
+const expectedResumeHash = '8b49bb1c2ff354d12d4cf42b7d0219798797542decce015c933cd0db7d7fe35d';
+const expectedSocialCardHash = '85053642c57449916fd25c53cd622344f92caf2579b7bb89a83bc45b71242980';
+const isPreviewBuild = process.env.VERCEL_ENV === 'preview';
 
-const [html, profileJson, profileMarkdown, llmsText, robotsText, sitemapIndex, sitemap, vercelConfigText] =
-	await Promise.all([
+const [
+	html,
+	profileJson,
+	profileMarkdown,
+	llmsText,
+	robotsText,
+	sitemapIndex,
+	sitemap,
+	vercelConfigText,
+	publicResume,
+	builtResume,
+	socialCard,
+] = await Promise.all([
 		read('dist/index.html'),
 		read('dist/profile.json'),
 		read('dist/profile.md'),
@@ -14,6 +31,9 @@ const [html, profileJson, profileMarkdown, llmsText, robotsText, sitemapIndex, s
 		read('dist/sitemap-index.xml'),
 		read('dist/sitemap-0.xml'),
 		read('vercel.json'),
+		readBinary('public/Bryan-Olandres-Resume.pdf'),
+		readBinary('dist/Bryan-Olandres-Resume.pdf'),
+		readBinary('public/og-card.png'),
 	]);
 
 const embeddedMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
@@ -51,7 +71,15 @@ for (const [relation, target] of [
 for (const target of ['/profile.json', '/profile.md', '/llms.txt']) {
 	assert(html.includes(`href="${productionOrigin}${target}"`), `Homepage is missing ${target}.`);
 }
-assert(html.includes('name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"'));
+const expectedRobotDirectives = isPreviewBuild
+	? 'noindex, nofollow, nosnippet'
+	: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+for (const agent of ['robots', 'googlebot', 'bingbot']) {
+	assert(
+		html.includes(`name="${agent}" content="${expectedRobotDirectives}"`),
+		`${agent} metadata does not match the ${isPreviewBuild ? 'preview' : 'production'} policy.`,
+	);
+}
 
 for (const agent of [
 	'OAI-SearchBot',
@@ -76,9 +104,26 @@ assert(llmsText.includes(`[Markdown profile](${productionOrigin}/profile.md)`));
 assert(llmsText.includes(`[JSON-LD profile](${productionOrigin}/profile.json)`));
 
 const publiclyExtractableText = [html, profileJson, profileMarkdown, llmsText].join('\n');
-assert(!/\binterim\b/i.test(publiclyExtractableText), 'Interim title leaked into public site content.');
+assert(
+	!publiclyExtractableText.includes('Interim Senior Technology Lead'),
+	'Retired current-title wording leaked into public site content.',
+);
+for (const entry of [
+	'Jun 2026 to Present: Senior Technology Lead, Payreto Services Inc.',
+	'Jan 2025 to May 2026: Technology Lead, Payreto Services Inc.',
+	'Oct 2022 to Jan 2025: Client Solutions Specialist, Payreto Services Inc.',
+	'May 2019 to Oct 2022: Payment Gateway Specialist, Payreto Services Inc.',
+]) {
+	assert(profileMarkdown.includes(entry), `Career history is missing the approved entry: ${entry}`);
+}
 assert(!publiclyExtractableText.includes('912 154 5913'), 'Phone number leaked outside the downloadable resume.');
 assert(!publiclyExtractableText.includes('(+63)'), 'Phone number leaked outside the downloadable resume.');
+
+assert.equal(sha256(publicResume), expectedResumeHash, 'Public resume bytes changed.');
+assert.equal(sha256(builtResume), expectedResumeHash, 'Built resume bytes changed.');
+assert.equal(sha256(socialCard), expectedSocialCardHash, 'Open Graph card changed without title verification.');
+assert.equal(socialCard.readUInt32BE(16), 1200, 'Open Graph card width must remain 1200px.');
+assert.equal(socialCard.readUInt32BE(20), 630, 'Open Graph card height must remain 630px.');
 
 const vercelConfig = JSON.parse(vercelConfigText);
 const headerRoutes = new Map(vercelConfig.headers.map((route) => [route.source, route.headers]));
@@ -96,4 +141,6 @@ assert(
 	'profile.json must use the JSON-LD content type on Vercel.',
 );
 
-console.log('Search verification passed: canonical HTML, structured data, crawler policy, sitemap, and machine-readable profiles are consistent.');
+console.log(
+	`Search verification passed for ${isPreviewBuild ? 'preview' : 'production'}: metadata, structured data, crawler policy, assets, sitemap, and machine-readable profiles are consistent.`,
+);

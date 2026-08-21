@@ -1,158 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import {
+	PROFILE_PAGE_TITLE,
+	RESUME_PATH,
+	capabilityGroups,
+	certifications,
+	earlierRoles,
+	payretoRoles,
+	publicProfile,
+	selectedWork,
+} from '../data/profile';
 
-const title = 'Bryan Olandres | Interim Senior Technology Lead';
-const description =
-	'Bryan Olandres is an Interim Senior Technology Lead with 10+ years of experience across fintech platforms, payment gateways, full-stack engineering, and technical delivery.';
-
-const selectedWork = [
-	{
-		code: '01 / Product assessment',
-		title: 'AI voice and chatbot product',
-		description:
-			'Led feasibility assessment and high-level system design for an AI voice and chatbot product using open-source technologies. Evaluated architecture, integration patterns, operational requirements, delivery risks, and external vendors.',
-		scope: 'Feasibility · System design · Vendor evaluation',
-	},
-	{
-		code: '02 / Delivery oversight',
-		title: 'Corporate disbursement tool',
-		description:
-			'Oversaw delivery of an internal tool supporting high-volume corporate payouts and secure multi-ledger workflows. Provided technical governance and product alignment across the delivery effort.',
-		scope: 'Payments · Multi-ledger workflows · Governance',
-	},
-	{
-		code: '03 / Internal platform',
-		title: 'Payment-gateway testing tool',
-		description:
-			'Led the design and development of an internal testing tool that streamlined end-to-end payment-gateway integration cycles.',
-		scope: 'Integration testing · Payment gateways · Tooling',
-	},
-	{
-		code: '04 / Workflow design',
-		title: 'Centralized hiring tracker',
-		description:
-			'Architected and launched a centralized tracker that improved applicant workflow coordination between Human Resources and technical leads.',
-		scope: 'Internal product · Workflow coordination',
-	},
-];
-
-const payretoRoles = [
-	{
-		period: 'Jun 2026 to Present',
-		title: 'Interim Senior Technology Lead',
-		copy: 'Partners with the CEO on product discovery and technical direction. Leads delivery priorities, risk management, stakeholder alignment, system design, and vendor evaluation while serving as the primary Scrum Master across projects.',
-	},
-	{
-		period: 'Jan 2026 to May 2026',
-		title: 'Technology Lead',
-		copy: 'Provided technical governance, architecture strategy, and product alignment across enterprise payment configurations and internal platforms. Oversaw the corporate disbursement tool and drafted the company-wide AI governance policy.',
-	},
-	{
-		period: 'Jan 2025 to Dec 2025',
-		title: 'Technology Lead (Interim)',
-		copy: 'Guided payment-gateway architecture, sprint execution, and engineering delivery through a business leadership transition while maintaining deployment reliability and integration quality.',
-	},
-	{
-		period: 'Oct 2022 to Jan 2025',
-		title: 'Client Solutions Specialist',
-		copy: 'Led internal product work across payment-gateway testing, hiring operations, and high-availability microservices built with Python, TypeScript, and Vue.js.',
-	},
-	{
-		period: 'May 2019 to Oct 2022',
-		title: 'Payment Gateway Specialist',
-		copy: 'Administered international transaction gateways for multi-currency, cross-border accounts and secure vendor integrations. Diagnosed production infrastructure issues to maintain transaction-processing availability.',
-	},
-];
-
-const earlierRoles = [
-	{
-		period: '2016 to 2019',
-		company: 'TELUS International Philippines',
-		role: 'Network Support Analyst',
-		copy: 'Network diagnostics, incident triage, documentation, and technical support for field technicians handling telecommunications setups.',
-	},
-	{
-		period: '2011 to 2016',
-		company: 'Convergys',
-		role: 'Technical Support, Reporting & Data Management',
-		copy: 'End-user support, database diagnostics, transaction troubleshooting, data-integrity validation, and reporting audits.',
-	},
-	{
-		period: 'Summer 2011',
-		company: 'Department of Environment and Natural Resources',
-		role: 'Records Officer, On-the-Job Training',
-		copy: 'Organized land titles and official records for accurate filing and retrieval.',
-	},
-];
-
-const capabilityGroups = [
-	{
-		label: 'Leadership and delivery',
-		items: [
-			'Technology strategy',
-			'Technical roadmaps',
-			'Product discovery',
-			'Agile Scrum',
-			'Project management',
-			'Stakeholder management',
-			'Vendor evaluation',
-			'Developer mentorship',
-		],
-	},
-	{
-		label: 'Engineering',
-		items: [
-			'Python',
-			'FastAPI',
-			'Flask',
-			'Django',
-			'TypeScript',
-			'Hono',
-			'Drizzle ORM',
-			'Go',
-			'Vue.js',
-			'Nuxt.js',
-			'PostgreSQL',
-			'MySQL',
-		],
-	},
-	{
-		label: 'Payments and operations',
-		items: [
-			'Payment gateways',
-			'ACI Worldwide',
-			'PaymentPlug',
-			'CelerisPay',
-			'NORBr',
-			'SEON',
-			'Nethone',
-			'DigitalOcean',
-			'CI/CD',
-			'Test automation',
-		],
-	},
-	{
-		label: 'AI product work',
-		items: [
-			'Generative AI',
-			'Large language models',
-			'Conversational AI',
-			'Voice and chatbot architecture',
-			'Open-source AI evaluation',
-			'AI governance',
-		],
-	},
-];
-
-const certifications = [
-	['2025', 'Ultimate Agile Scrum Master Certification', 'Udemy'],
-	['2024', 'Python Django: The Practical Guide', 'Udemy'],
-	['2024', 'Become a Product Manager', 'Udemy'],
-	['2023', 'Figma UI/UX Design Essentials', 'Udemy'],
-	['2010', 'Computer Hardware Servicing NC II', 'TESDA'],
-];
-
-const downloadPath = '/Bryan-Olandres-Resume.pdf';
+const title = PROFILE_PAGE_TITLE;
+const description = publicProfile.description;
+const downloadPath = RESUME_PATH;
 ---
 
 <Layout {title} {description}>
@@ -181,12 +42,12 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 		<section class="hero" id="top" aria-labelledby="hero-title">
 			<div class="shell hero-grid">
 				<div class="hero-copy" data-reveal>
-					<p class="eyebrow">Interim Senior Technology Lead · Pasig City, Philippines</p>
+					<p class="eyebrow">{publicProfile.jobTitle} · Pasig City, Philippines</p>
 					<h1 id="hero-title">Bryan<br /><em>Olandres</em></h1>
-					<p class="hero-statement">I turn product and operational needs into technical direction and accountable delivery.</p>
+					<p class="hero-statement">I translate product and operational needs into technical direction and lead delivery.</p>
 					<p class="hero-summary">
-						I work across fintech platforms, payment systems, internal tools, and emerging AI products.
-						At Payreto, I partner with the CEO on product discovery and serve as the primary Scrum Master across delivery initiatives.
+						I work across fintech platforms, payment systems, internal tools, and artificial intelligence (AI) products.
+						At Payreto, I partner with the Chief Executive Officer (CEO) on product discovery and serve as the primary Scrum Master across delivery initiatives.
 					</p>
 					<div class="hero-actions no-print">
 						<a class="button primary" href="#work">
@@ -201,7 +62,7 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 				</div>
 
 				<aside class="hero-rail" aria-label="Professional overview" data-reveal>
-					<div class="rail-status"><span></span> Available for a conversation</div>
+					<div class="rail-status"><span></span> {publicProfile.jobTitle}</div>
 					<dl>
 						<div><dt>Experience</dt><dd>10+ years</dd></div>
 						<div><dt>Current company</dt><dd>Payreto Services Inc.</dd></div>
@@ -216,7 +77,7 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 				<div class="shell">
 					<span><strong>10+ years</strong> across technical operations and delivery</span>
 					<span><strong>Fintech</strong> and payment systems</span>
-					<span><strong>Operating range</strong> discovery to architecture to delivery</span>
+					<span><strong>Operating range:</strong> discovery, architecture, and delivery</span>
 				</div>
 			</div>
 		</section>
@@ -230,13 +91,13 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 				<div class="section-body">
 					<div class="section-heading" data-reveal>
 						<h2 id="profile-title">From technical direction <em>to delivery</em></h2>
-						<p>My role connects business questions to system decisions and the work required to deliver them. I stay close to architecture and engineering, maintain ownership of priorities and risks, and keep stakeholders aligned.</p>
+						<p>I am a {publicProfile.jobTitle} based in Pasig City, Philippines. I translate business questions into system decisions and lead delivery across fintech platforms, payment systems, internal tools, and AI products.</p>
 					</div>
 					<div class="leadership-grid">
-						<article data-reveal><span>01</span><h3>Product discovery</h3><p>Partner with executive leadership to shape problem statements, assess opportunities, and translate findings into technical priorities.</p></article>
-						<article data-reveal><span>02</span><h3>Technical direction</h3><p>Guide architecture, integration choices, security practices, and delivery standards across payment and internal platforms.</p></article>
-						<article data-reveal><span>03</span><h3>Delivery leadership</h3><p>Lead sprint planning, prioritization, risk management, and stakeholder alignment as the primary Scrum Master across projects.</p></article>
-						<article data-reveal><span>04</span><h3>Team development</h3><p>Support cross-functional engineering teams through technical guidance, code review practices, and developer mentorship.</p></article>
+						<article data-reveal><span>01</span><h3>Product discovery</h3><p>I partner with executive leadership to shape problem statements, assess opportunities, and translate findings into technical priorities.</p></article>
+						<article data-reveal><span>02</span><h3>Technical direction</h3><p>I guide architecture, integration choices, security practices, and delivery standards across payment and internal platforms.</p></article>
+						<article data-reveal><span>03</span><h3>Delivery leadership</h3><p>I lead sprint planning, prioritization, risk management, and stakeholder alignment as the primary Scrum Master across projects.</p></article>
+						<article data-reveal><span>04</span><h3>Team development</h3><p>I support cross-functional engineering teams through technical guidance, code review practices, and developer mentorship.</p></article>
 					</div>
 				</div>
 			</div>
@@ -246,7 +107,7 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 			<div class="shell section-grid">
 				<div class="section-rail" data-reveal>
 					<p class="section-index">02 / Selected work</p>
-					<p class="rail-note">Non-confidential scope</p>
+					<p class="rail-note">Selected initiatives</p>
 				</div>
 				<div class="section-body">
 					<div class="section-heading compact" data-reveal>
@@ -275,12 +136,12 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 				</div>
 				<div class="section-body">
 					<div class="section-heading" data-reveal>
-						<h2 id="experience-title">A career built <em>close to the work</em></h2>
-						<p>At Payreto, I advanced from payment operations and client solutions into technology leadership. Each role added broader responsibility for architecture, products, teams, and delivery.</p>
+						<h2 id="experience-title">From payment operations <em>to technology leadership</em></h2>
+						<p>At Payreto, I advanced from payment operations and client solutions into technology leadership. Each role expanded my responsibilities across architecture, products, teams, and delivery.</p>
 					</div>
 
 					<div class="company-heading" data-reveal>
-						<div><p class="eyebrow">Payreto Services Inc.</p><h3>Five roles since 2019</h3></div>
+						<div><p class="eyebrow">Payreto Services Inc.</p><h3>Four roles since 2019</h3></div>
 						<p>Makati, Philippines</p>
 					</div>
 					<ol class="timeline">
@@ -362,7 +223,7 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 					<h2 id="contact-title">Let's discuss<br /><em>the work.</em></h2>
 				</div>
 				<div class="contact-copy" data-reveal>
-					<p>I'm open to conversations about technology leadership, fintech platforms, payment systems, and product delivery. For role or project discussions, contact me directly by email.</p>
+					<p>Email me to discuss technology leadership, fintech platforms, payment systems, product delivery, or other complex technical projects.</p>
 					<div class="contact-actions no-print">
 						<a class="button primary" href="mailto:bryan.olandres.6247@gmail.com">Email Bryan <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M3 8h10m-4-4 4 4-4 4" /></svg></a>
 						<a class="button" href={downloadPath} download="Bryan-Olandres-Resume.pdf">Download resume <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M8 1v9m0 0 4-4m-4 4L4 6M2 14h12" /></svg></a>
@@ -379,7 +240,7 @@ const downloadPath = '/Bryan-Olandres-Resume.pdf';
 
 	<footer>
 		<div class="shell footer-inner">
-			<p>Bryan Olandres · Interim Senior Technology Lead</p>
+			<p>Bryan Olandres · {publicProfile.jobTitle}</p>
 			<a class="no-print" href="#top">Back to top ↑</a>
 		</div>
 	</footer>

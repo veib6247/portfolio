@@ -5,6 +5,7 @@ import '@fontsource/barlow-condensed/800.css';
 import '@fontsource-variable/archivo';
 import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
+import { buildProfileGraph, publicProfile } from '../data/profile';
 import '../styles/global.css';
 
 interface Props {
@@ -13,31 +14,23 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
-const configuredSite = import.meta.env.PUBLIC_SITE_URL ?? Astro.site?.toString();
-const canonicalUrl = configuredSite
-	? new URL(Astro.url.pathname, configuredSite).toString()
-	: undefined;
-const socialImage = configuredSite ? new URL('/og-card.png', configuredSite).toString() : undefined;
-
-const personJsonLd = {
-	'@context': 'https://schema.org',
-	'@type': 'Person',
-	name: 'Bryan Olandres',
-	jobTitle: 'Interim Senior Technology Lead',
-	description,
-	email: 'mailto:bryan.olandres.6247@gmail.com',
-	address: {
-		'@type': 'PostalAddress',
-		addressLocality: 'Pasig City',
-		addressCountry: 'PH',
-	},
-	sameAs: ['https://github.com/veib6247'],
-	...(configuredSite ? { url: configuredSite } : {}),
-};
+if (!Astro.site) throw new Error('Astro site URL is required for canonical metadata.');
+const configuredSite = Astro.site.toString();
+const canonicalUrl = new URL(Astro.url.pathname, configuredSite).toString();
+const socialImage = new URL('/og-card.png', configuredSite).toString();
+const profileJsonUrl = new URL('/profile.json', configuredSite).toString();
+const profileMarkdownUrl = new URL('/profile.md', configuredSite).toString();
+const llmsTextUrl = new URL('/llms.txt', configuredSite).toString();
+const sitemapUrl = new URL('/sitemap-index.xml', configuredSite).toString();
+const isPreviewDeployment = import.meta.env.VERCEL_ENV === 'preview';
+const robotDirectives = isPreviewDeployment
+	? 'noindex, nofollow, nosnippet'
+	: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const profileGraph = Astro.url.pathname === '/' ? buildProfileGraph(configuredSite) : undefined;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en-PH">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -45,8 +38,12 @@ const personJsonLd = {
 		<meta name="theme-color" content="#f4f7f8" />
 		<meta name="color-scheme" content="light" />
 		<meta name="description" content={description} />
-		<meta name="author" content="Bryan Olandres" />
-		<meta name="robots" content="index, follow" />
+		<meta name="author" content={publicProfile.name} />
+		<meta name="robots" content={robotDirectives} />
+		<meta name="googlebot" content={robotDirectives} />
+		<meta name="bingbot" content={robotDirectives} />
+		<meta name="referrer" content="strict-origin-when-cross-origin" />
+		<meta name="format-detection" content="telephone=no" />
 		<meta property="og:type" content="profile" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -57,16 +54,24 @@ const personJsonLd = {
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-		{socialImage && <meta property="og:image" content={socialImage} />}
-		{socialImage && <meta property="og:image:width" content="1200" />}
-		{socialImage && <meta property="og:image:height" content="630" />}
-		{socialImage && <meta property="og:image:alt" content="Bryan Olandres, Interim Senior Technology Lead" />}
-		{socialImage && <meta name="twitter:image" content={socialImage} />}
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={socialImage} />
+		<meta property="og:image:secure_url" content={socialImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/png" />
+		<meta property="og:image:alt" content={`Bryan Olandres, ${publicProfile.jobTitle}`} />
+		<meta name="twitter:image" content={socialImage} />
+		<meta name="twitter:image:alt" content={`Bryan Olandres, ${publicProfile.jobTitle}`} />
+		<link rel="sitemap" href={sitemapUrl} />
+		<link rel="alternate" type="application/ld+json" href={profileJsonUrl} title="Bryan Olandres structured profile" />
+		<link rel="alternate" type="text/markdown" href={profileMarkdownUrl} title="Bryan Olandres profile in Markdown" />
+		<link rel="describedby" href={llmsTextUrl} type="text/plain" />
+		<link rel="me" href={publicProfile.github} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
-		<script is:inline type="application/ld+json" set:html={JSON.stringify(personJsonLd)} />
+		{profileGraph && <script is:inline type="application/ld+json" set:html={JSON.stringify(profileGraph)} />}
 	</head>
 	<body>
 		<slot />

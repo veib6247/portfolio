@@ -1,5 +1,6 @@
 export const PROFILE_PAGE_TITLE = 'Bryan Olandres | Senior Technology Lead';
-export const RESUME_PATH = '/Bryan-Olandres-Resume.pdf';
+export const RESUME_FILENAME = 'Bryan-Olandres-Resume.pdf';
+export const RESUME_PATH = `/${RESUME_FILENAME}`;
 
 export const publicProfile = {
 	name: 'Bryan Olandres',

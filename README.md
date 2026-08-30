@@ -40,7 +40,7 @@ The recruiter-facing PDF is stored at:
 public/Bryan-Olandres-Resume.pdf
 ```
 
-Keep the filename stable when replacing the resume. The navigation, hero, and contact section all reference this path.
+Keep the filename stable when replacing the resume. The navigation, hero, and contact section all reference this path. Then update `expectedResumeHash` in `scripts/validate-search.mjs` to the new file's SHA-256 checksum so the asset-integrity check recognizes the replacement.
 
 ## Deployment
 

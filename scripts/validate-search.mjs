@@ -6,7 +6,9 @@ const productionOrigin = 'https://www.bryisdoinghisbest.com';
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), 'utf8');
 const readBinary = (path) => readFile(new URL(`../${path}`, import.meta.url));
 const sha256 = (content) => createHash('sha256').update(content).digest('hex');
-const expectedResumeHash = '8b49bb1c2ff354d12d4cf42b7d0219798797542decce015c933cd0db7d7fe35d';
+const resumeFilename = 'Bryan-Olandres-Resume.pdf';
+const resumePath = `/${resumeFilename}`;
+const expectedResumeHash = '247d5d322185d49d008204e1b21fbe52bf56ab162b0cdffbb80487363744cdf6';
 const expectedSocialCardHash = '85053642c57449916fd25c53cd622344f92caf2579b7bb89a83bc45b71242980';
 const isPreviewBuild = process.env.VERCEL_ENV === 'preview';
 
@@ -22,6 +24,7 @@ const [
 	publicResume,
 	builtResume,
 	socialCard,
+	builtSocialCard,
 ] = await Promise.all([
 		read('dist/index.html'),
 		read('dist/profile.json'),
@@ -31,9 +34,10 @@ const [
 		read('dist/sitemap-index.xml'),
 		read('dist/sitemap-0.xml'),
 		read('vercel.json'),
-		readBinary('public/Bryan-Olandres-Resume.pdf'),
-		readBinary('dist/Bryan-Olandres-Resume.pdf'),
+		readBinary(`public/${resumeFilename}`),
+		readBinary(`dist/${resumeFilename}`),
 		readBinary('public/og-card.png'),
+		readBinary('dist/og-card.png'),
 	]);
 
 const embeddedMatch = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
@@ -71,6 +75,10 @@ for (const [relation, target] of [
 for (const target of ['/profile.json', '/profile.md', '/llms.txt']) {
 	assert(html.includes(`href="${productionOrigin}${target}"`), `Homepage is missing ${target}.`);
 }
+const resumeDownloadLinks = (html.match(/<a\b[^>]*>/g) ?? []).filter(
+	(link) => link.includes(`href="${resumePath}"`) && link.includes(`download="${resumeFilename}"`),
+);
+assert.equal(resumeDownloadLinks.length, 3, 'Homepage must contain all three resume download links.');
 const expectedRobotDirectives = isPreviewBuild
 	? 'noindex, nofollow, nosnippet'
 	: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
@@ -122,12 +130,15 @@ assert(!publiclyExtractableText.includes('(+63)'), 'Phone number leaked outside 
 assert.equal(sha256(publicResume), expectedResumeHash, 'Public resume bytes changed.');
 assert.equal(sha256(builtResume), expectedResumeHash, 'Built resume bytes changed.');
 assert.equal(sha256(socialCard), expectedSocialCardHash, 'Open Graph card changed without title verification.');
+assert.equal(sha256(builtSocialCard), expectedSocialCardHash, 'Built Open Graph card changed.');
 assert.equal(socialCard.readUInt32BE(16), 1200, 'Open Graph card width must remain 1200px.');
 assert.equal(socialCard.readUInt32BE(20), 630, 'Open Graph card height must remain 630px.');
+assert.equal(builtSocialCard.readUInt32BE(16), 1200, 'Built Open Graph card width must remain 1200px.');
+assert.equal(builtSocialCard.readUInt32BE(20), 630, 'Built Open Graph card height must remain 630px.');
 
 const vercelConfig = JSON.parse(vercelConfigText);
 const headerRoutes = new Map(vercelConfig.headers.map((route) => [route.source, route.headers]));
-for (const path of ['/profile.json', '/profile.md', '/llms.txt', '/Bryan-Olandres-Resume.pdf']) {
+for (const path of ['/profile.json', '/profile.md', '/llms.txt', resumePath]) {
 	assert(headerRoutes.has(path), `vercel.json is missing headers for ${path}.`);
 	assert(
 		headerRoutes.get(path).some((header) => header.key === 'X-Robots-Tag' && header.value.includes('noindex')),
